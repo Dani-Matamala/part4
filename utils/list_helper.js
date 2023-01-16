@@ -8,6 +8,18 @@ const totalLikes = (blogs) => {
   return likes
 }
 
+const blogWithMoreLikes = (blogs) => {
+  //   const likes = blogs.map( blog => blog.likes)
+  //   return Math.max(...likes)
+  let max = blogs[0]
+
+  for (let blog of blogs) {
+    if (max.likes < blog.likes)
+      max = blog
+  }
+  return max
+}
+
 const blogs = [
   {
     _id: '5a422a851b54a676234d17f7',
@@ -59,21 +71,10 @@ const blogs = [
   }
 ]
 
-const maxLikes = (blogs) => {
-//   const likes = blogs.map( blog => blog.likes)
-//   return Math.max(...likes)
-  let max = blogs[0]
-
-  for(let blog of blogs){
-    if(max.likes < blog.likes)
-      max = blog
-  }
-  return max
-}
 
 module.exports = {
   dummy,
   blogs,
   totalLikes,
-  maxLikes
+  blogWithMoreLikes
 }

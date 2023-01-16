@@ -1,16 +1,21 @@
+const dotenv = require('dotenv')
+dotenv.config()
 const express = require('express')
 const app = express()
-const config = require("./utils/config")
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 const blogRouter = require('./routes/blogs')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
-logger.info('connecting to', config.MONGODB_URI)
+const MONGODB_URI = process.env.NODE_ENV === 'test'
+  ? process.env.TEST_MONGODB_URI
+  : process.env.MONGODB_URI
+
+logger.info('connecting to', MONGODB_URI)
 
 mongoose.set('strictQuery', true)
-mongoose.connect(config.MONGODB_URI)
+mongoose.connect(MONGODB_URI)
   .then(() => {
     logger.info('connected to MongoDB')
   })

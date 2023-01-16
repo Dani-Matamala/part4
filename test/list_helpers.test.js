@@ -3,7 +3,6 @@ const { blogs } = require('../utils/list_helper')
 
 test('dummy returns one', () => {
   const blogs = []
-
   const result = listHelper.dummy(blogs)
   expect(result).toBe(1)
 })
@@ -27,10 +26,10 @@ describe('total likes', () => {
 })
 
 describe('favorite blog', () => {
-  const listBlogs = []
+  const listBlogs = blogs
 
   test('select blog with most likes', () => {
-    const result = listHelper.maxLikes(listBlogs)
-    expect(result).toEqual(null)
+    const result = listHelper.blogWithMoreLikes(listBlogs)
+    expect(result).toEqual(listBlogs[2])
   })
 })
